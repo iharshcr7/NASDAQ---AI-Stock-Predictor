@@ -1,6 +1,6 @@
 # 📈 Stock Market Prediction Dashboard
 
-## 🚀 Features
+## Features
 - Manual Stock Prediction
 - Live Data using yfinance
 - Live Data using Alpha Vantage API
@@ -10,7 +10,7 @@
 
 ---
 
-## 🧠 Tech Stack
+## Tech Stack
 - Python
 - Streamlit
 - Scikit-learn
@@ -21,7 +21,7 @@
 
 ---
 
-## ⚙️ Installation
+## Installation
 
 Clone the repository:
 
@@ -33,17 +33,17 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Run the App
+## Run the App
 
 streamlit run app.py
 
 ---
 
-## 📊 Dataset
+## Dataset
 
 Download dataset from Kaggle:
 
-<PASTE YOUR KAGGLE LINK HERE>
+https://www.kaggle.com/datasets/jacksoncrow/stock-market-dataset?utm_so
 
 After downloading, place it inside:
 
@@ -51,7 +51,7 @@ data/
 
 ---
 
-## 🔑 Alpha Vantage API Key
+## Alpha Vantage API Key
 
 1. Get your free API key from:
    https://www.alphavantage.co
@@ -66,7 +66,7 @@ with your actual key.
 
 ---
 
-## ⚠️ Notes
+## Notes
 
 - Dataset is not included due to large size
 - Ensure Java 8 is installed for Spark
@@ -74,7 +74,7 @@ with your actual key.
 
 ---
 
-## 📌 Project Structure
+## Project Structure
 
 StudioProject/
 │
@@ -86,7 +86,7 @@ StudioProject/
 
 ---
 
-## 💡 Future Improvements
+## Future Improvements
 - Advanced ML models (LSTM)
 - Multi-stock comparison
 - Buy/Sell signals
