@@ -1,0 +1,8 @@
+pandas
+scikit-learn
+streamlit
+pyspark
+joblib
+yfinance
+plotly
+alpha_vantage
