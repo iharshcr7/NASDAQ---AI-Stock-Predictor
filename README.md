@@ -25,7 +25,7 @@
 
 Clone the repository:
 
-git clone <YOUR_GITHUB_LINK>
+git clone https://github.com/Asmetha0205/Stock-Market-Dashboard.git
 
 Install dependencies:
 
