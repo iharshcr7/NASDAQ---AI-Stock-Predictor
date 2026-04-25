@@ -10,7 +10,7 @@ st.set_page_config(page_title="Stock Dashboard", layout="wide")
 
 model = joblib.load("model.pkl")
 
-API_KEY = "FPTIC5Y5CAE95PTR"  # 🔥 put your Alpha Vantage key
+API_KEY = "YOUR_API_KEY"  # 🔥 put your Alpha Vantage key
 
 # ---------------- TITLE ----------------
 st.markdown("<h1 style='text-align:center;font-size:60px'>📈 Stock Dashboard</h1>", unsafe_allow_html=True)
