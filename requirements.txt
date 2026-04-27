@@ -1,8 +1,18 @@
+# Core
 pandas
+numpy
 scikit-learn
-streamlit
-pyspark
 joblib
-yfinance
+pyspark==3.5.8
+
+# Visualization
+streamlit
 plotly
+matplotlib
+mplfinance
+
+# Live Data
+yfinance
+requests
 alpha_vantage
+python-dotenv
