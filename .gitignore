@@ -13,3 +13,14 @@ live_api_dumps/
 .DS_Store
 Thumbs.db
 .vscode/
+__pycache__/
+*.pyc
+
+spark_output/
+spark_summary/
+test_spark_output.parquet/
+
+*.crc
+
+.env
+venv/
