@@ -1,4 +1,4 @@
-<img width="1791" height="644" alt="Screenshot 2026-05-21 182022" src="https://github.com/user-attachments/assets/30a7d51f-b6a0-45bb-b686-2c7cf2ef669e" /># NASDAQ AI Stock Predictor
+# NASDAQ AI Stock Predictor
 
 A Python-based stock direction prediction project with a Streamlit dashboard, live market data fetching, Random Forest and LSTM models, optional MongoDB prediction history, and optional Spark/HDFS processing for big-data workflow demonstration.
 
