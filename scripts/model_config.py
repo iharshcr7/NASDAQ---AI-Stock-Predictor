@@ -2,6 +2,8 @@
 model_config.py
 ===============
 Shared production configuration and validation for final Random Forest system.
+
+UPDATED: Removed stable stock restrictions - now supports all stocks dynamically.
 """
 
 from __future__ import annotations
@@ -18,7 +20,9 @@ SYMBOL_COLUMN = "Symbol"
 DATE_COLUMN = "Date"
 TARGET_COLUMN = "Target"
 
-STABLE_SYMBOLS = ["AAPL", "MSFT", "GOOGL", "AMZN", "NVDA"]
+# REMOVED: STABLE_SYMBOLS restriction
+# The system now supports all stocks dynamically from the dataset
+# No hardcoded symbol filtering needed
 
 FINAL_FEATURE_COLUMNS = [
     "Open",

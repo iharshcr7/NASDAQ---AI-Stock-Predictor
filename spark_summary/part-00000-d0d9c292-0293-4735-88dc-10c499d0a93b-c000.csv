@@ -1,0 +1,2 @@
+total_rows,unique_symbols,date_range_start,date_range_end,avg_close_price,std_close_price,min_close_price,max_close_price,avg_volume,avg_daily_returns,avg_volatility
+19277,5,1981-01-30,2020-03-31,111.30799956354909,271.5695665973078,0.09375,2153.10009765625,4.9318994667220004E7,0.22374300520717916,3.728062419325718

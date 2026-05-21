@@ -58,7 +58,7 @@ def validate_columns(df: pd.DataFrame) -> None:
     if missing:
         logger.error("Missing required columns: %s", missing)
         sys.exit(1)
-    logger.info("Column validation passed ✓")
+    logger.info("Column validation passed")
 
 
 def convert_date_column(df: pd.DataFrame) -> pd.DataFrame:
@@ -98,7 +98,7 @@ def remove_duplicates(df: pd.DataFrame) -> pd.DataFrame:
     if dropped > 0:
         logger.info("Removed %d duplicate rows", dropped)
     else:
-        logger.info("No duplicate rows found ✓")
+        logger.info("No duplicate rows found")
     return df
 
 
@@ -133,7 +133,7 @@ def handle_missing_values(df: pd.DataFrame) -> pd.DataFrame:
 def sort_data(df: pd.DataFrame) -> pd.DataFrame:
     """Sort by Symbol, then by Date ascending."""
     df = df.sort_values(["Symbol", "Date"]).reset_index(drop=True)
-    logger.info("Data sorted by [Symbol, Date] ✓")
+    logger.info("Data sorted by [Symbol, Date]")
     return df
 
 
@@ -179,7 +179,7 @@ def validate_price_sanity(df: pd.DataFrame) -> pd.DataFrame:
     if dropped > 0:
         logger.warning("Removed %d rows failing price sanity checks", dropped)
     else:
-        logger.info("Price sanity validation passed ✓")
+        logger.info("Price sanity validation passed")
 
     return df
 

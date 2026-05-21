@@ -108,11 +108,29 @@ def fetch_alpha_vantage(symbol: str, api_key: str, outputsize: str = "compact") 
     response.raise_for_status()
     data = response.json()
 
-    # Check for API errors
+    # Check for API errors and rate limits
     if "Error Message" in data:
         raise ValueError(f"Alpha Vantage error: {data['Error Message']}")
+    
+    # Check for rate limit messages (both "Note" and "Information" keys)
     if "Note" in data:
-        raise RuntimeError(f"Alpha Vantage rate limit: {data['Note']}")
+        logger.error(f"Alpha Vantage rate limit hit: {data['Note']}")
+        raise RuntimeError(
+            f"Alpha Vantage API rate limit exceeded.\n"
+            f"Message: {data['Note']}\n"
+            f"Free tier limit: 25 requests/day, 5 requests/minute.\n"
+            f"Solution: Wait a few minutes or use yfinance as fallback."
+        )
+    
+    if "Information" in data:
+        logger.error(f"Alpha Vantage API limit: {data['Information']}")
+        raise RuntimeError(
+            f"Alpha Vantage API rate limit exceeded.\n"
+            f"Message: {data['Information']}\n"
+            f"Free tier limit: 25 requests/day, 5 requests/minute.\n"
+            f"Solution: Wait a few minutes or use yfinance as fallback."
+        )
+    
     if "Time Series (Daily)" not in data:
         raise ValueError(f"Unexpected API response format. Keys: {list(data.keys())}")
 
@@ -269,6 +287,7 @@ def fetch_live_stock_data(
     symbol: str,
     api_key: str = "",
     source: str = "auto",
+    return_full_history: bool = True,
 ) -> dict:
     """
     Fetch live stock data and compute model-ready features.
@@ -281,12 +300,14 @@ def fetch_live_stock_data(
         Alpha Vantage API key. Ignored if source='yfinance'.
     source : str
         'alpha_vantage', 'yfinance', or 'auto' (try AV first, fallback to yf).
+    return_full_history : bool
+        If True, includes full historical DataFrame for Spark processing.
 
     Returns
     -------
     dict
         Contains: symbol, latest quote data, computed features, source used,
-        and the feature vector ready for model prediction.
+        feature vector ready for model prediction, and optionally full historical DataFrame.
     """
     df = None
     used_source = None
@@ -296,10 +317,18 @@ def fetch_live_stock_data(
         try:
             df = fetch_alpha_vantage(symbol, api_key or DEFAULT_API_KEY)
             used_source = "alpha_vantage"
-        except Exception as exc:
+        except (RuntimeError, ValueError) as exc:
             logger.warning("Alpha Vantage failed: %s", exc)
             if source == "alpha_vantage":
+                # User explicitly requested Alpha Vantage, so raise the error
                 raise
+            # Otherwise, fall back to yfinance
+            logger.info("Falling back to Yahoo Finance...")
+        except Exception as exc:
+            logger.warning("Alpha Vantage unexpected error: %s", exc)
+            if source == "alpha_vantage":
+                raise
+            logger.info("Falling back to Yahoo Finance...")
 
     if df is None:
         df = fetch_yfinance(symbol)
@@ -327,10 +356,18 @@ def fetch_live_stock_data(
         "features": {col: round(float(latest[col]), 6) for col in MODEL_FEATURES},
         "feature_vector": [float(latest[col]) for col in MODEL_FEATURES],
     }
+    
+    # Include full historical DataFrame for Spark processing
+    if return_full_history:
+        # Prepare DataFrame for Spark: keep only essential columns
+        spark_columns = ["Date", "Open", "High", "Low", "Close", "Volume"]
+        df_for_spark = df[spark_columns].copy()
+        df_for_spark["Symbol"] = symbol
+        result["historical_df"] = df_for_spark
 
     logger.info(
-        "Live data ready for %s (source=%s, date=%s)",
-        symbol, used_source, result["latest_date"],
+        "Live data ready for %s (source=%s, date=%s, rows=%d)",
+        symbol, used_source, result["latest_date"], len(df) if return_full_history else 1,
     )
     return result
 
@@ -339,6 +376,7 @@ def get_historical_for_chart(
     symbol: str,
     api_key: str = "",
     source: str = "auto",
+    period: str = "3mo",
 ) -> pd.DataFrame:
     """
     Fetch recent historical data suitable for charting (candlestick / line).
@@ -348,12 +386,14 @@ def get_historical_for_chart(
 
     if source in ("alpha_vantage", "auto"):
         try:
-            df = fetch_alpha_vantage(symbol, api_key or DEFAULT_API_KEY)
+            # If period is 1 year or more, request full dataset
+            outputsize = "full" if period in ("1y", "2y", "5y", "max") else "compact"
+            df = fetch_alpha_vantage(symbol, api_key or DEFAULT_API_KEY, outputsize=outputsize)
         except Exception:
             pass
 
     if df is None:
-        df = fetch_yfinance(symbol, period="3mo")
+        df = fetch_yfinance(symbol, period=period)
 
     return df
 

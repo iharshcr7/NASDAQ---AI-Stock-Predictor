@@ -276,7 +276,7 @@ def engineer_features(df: pd.DataFrame) -> pd.DataFrame:
 
     # Log feature creation
     for name, _ in feature_functions:
-        logger.info("  ✓ %s", name)
+        logger.info("  %s", name)
 
     # Remove noisy targets (small next-day move) first, then remove NaNs from warmup windows
     initial_len = len(df)

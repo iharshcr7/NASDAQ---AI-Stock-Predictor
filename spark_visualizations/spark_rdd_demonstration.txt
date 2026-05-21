@@ -1,0 +1,43 @@
+======================================================================
+SPARK RDD TRANSFORMATIONS AND ACTIONS DEMONSTRATION
+======================================================================
+
+RDD Information:
+  Partitions: 4
+  Total Rows: 19277
+
+RDD Transformations:
+  1. map: Extract Close price
+     First 5 close prices: [0.5044642686843872, 0.4754464328289032, 0.4933035671710968, 0.5133928656578064, 0.4866071343421936]
+
+  2. filter: High volume rows (>1M)
+     Count: 19230
+
+  3. reduceByKey: Count rows per symbol
+     Symbol counts: [('AMZN', 3526), ('GOOGL', 1741), ('AAPL', 6103), ('MSFT', 4344), ('NVDA', 3563)]
+
+RDD Actions:
+  1. count: Total rows
+     Result: 19277
+
+  2. take: First N rows
+     First 3 rows: [Row(High=0.5089285969734192, Close=0.5044642686843872, Low=0.5044642686843872, Volume=11547200.0, Date=datetime.date(1981, 1, 30), Open=0.5089285969734192, Symbol='AAPL', MA5=0.5477678537368774, MA10=0.5647321403026581, MA20=0.5627232134342194, Daily_Returns=-5.439332226858296, Volatility=0.004464328289031982, Price_Change_Pct=-0.8772013039906166, Lag_1=0.5334821343421936, Lag_3=0.5714285969734192, RSI=31.111131145119742, Volume_Change_Pct=5.204081632653068, EMA12=0.5552201144618565, BB_Position=-0.14312455861651954, MACD=-0.001947996503478766, MACD_Signal=0.005488736765625288, MACD_Hist=-0.007436733269104054, BB_Width=16.098028386712503, Weekly_Momentum=-13.740457159455444, Avg_Volume_Trend=1.5349114187881494, Avg_5D_Volume_Trend=1.3863116848191475, Trend_Strength=2.657675983557092, Rolling_Std_Returns=3.3157259008833218, Future_Return_Pct=-5.752208363767923, Target=0, Daily_Returns_Spark=None, Weekly_Momentum_Spark=None, Volatility_Spark=0.8849642216830708, MA5_Spark=0.5044642686843872, MA10_Spark=0.5044642686843872, MA20_Spark=0.5044642686843872, Rolling_Std_20_Spark=None, Volume_MA20_Spark=11547200.0, Volume_Ratio_Spark=1.0, Bollinger_Width_Spark=None, Close_Lag1_Spark=None, Close_Lag5_Spark=None), Row(High=0.4776785671710968, Close=0.4754464328289032, Low=0.4754464328289032, Volume=5941600.0, Date=datetime.date(1981, 2, 2), Open=0.4776785671710968, Symbol='AAPL', MA5=0.5276785671710968, MA10=0.5535714238882065, MA20=0.5563616052269935, Daily_Returns=-5.752208363767918, Volatility=0.0022321343421936035, Price_Change_Pct=-0.46728794122221706, Lag_1=0.5044642686843872, Lag_3=0.5535714030265808, RSI=27.46574025828903, Volume_Change_Pct=-48.545101842871, EMA12=0.5429472403644791, BB_Position=-0.22100370295370933, MACD=-0.008167412961120446, MACD_Signal=0.002757506820276141, MACD_Hist=-0.010924919781396588, BB_Width=20.171366351640817, Weekly_Momentum=-17.44186094650947, Avg_Volume_Trend=0.8394651475591424, Avg_5D_Volume_Trend=0.7170856988375236, Trend_Strength=5.1554668378300645, Rolling_Std_Returns=2.6005232644134093, Future_Return_Pct=3.7558667200306393, Target=1, Daily_Returns_Spark=-5.752208363767918, Weekly_Momentum_Spark=None, Volatility_Spark=0.469481772933371, MA5_Spark=0.4899553507566452, MA10_Spark=0.4899553507566452, MA20_Spark=0.4899553507566452, Rolling_Std_20_Spark=0.020518708508770883, Volume_MA20_Spark=8744400.0, Volume_Ratio_Spark=0.6794748639129042, Bollinger_Width_Spark=8.375746270383022, Close_Lag1_Spark=0.5044642686843872, Close_Lag5_Spark=None), Row(High=0.4955357015132904, Close=0.4933035671710968, Low=0.4933035671710968, Volume=4788000.0, Date=datetime.date(1981, 2, 3), Open=0.4933035671710968, Symbol='AAPL', MA5=0.5120535612106323, MA10=0.5459821403026581, MA20=0.5522321403026581, Daily_Returns=3.7558667200306317, Volatility=0.0022321343421936035, Price_Change_Pct=0.0, Lag_1=0.4754464328289032, Lag_3=0.5334821343421936, RSI=32.69239562713399, Volume_Change_Pct=-19.415645617342125, EMA12=0.5353097521808818, BB_Position=0.024129353503782543, MACD=-0.011522598466606415, MACD_Signal=-9.851423710037022e-05, MACD_Hist=-0.011424084229506045, BB_Width=22.424115900639396, Weekly_Momentum=-13.671879604225767, Avg_Volume_Trend=0.7036457904699202, Avg_5D_Volume_Trend=0.5941626129256428, Trend_Strength=7.275668357514545, Rolling_Std_Returns=3.1454133835442826, Future_Return_Pct=3.6199138487726437, Target=1, Daily_Returns_Spark=3.7558667200306317, Weekly_Momentum_Spark=None, Volatility_Spark=0.4524869655806508, MA5_Spark=0.4910714228947957, MA10_Spark=0.4910714228947957, MA20_Spark=0.4910714228947957, Rolling_Std_20_Spark=0.014637129175033643, Volume_MA20_Spark=7425600.0, Volume_Ratio_Spark=0.6447963800904978, Bollinger_Width_Spark=5.9613035874699705, Close_Lag1_Spark=0.4754464328289032, Close_Lag5_Spark=None)]
+
+  3. collect: Collect all data (sampled)
+     Sample size: 18 rows
+
+======================================================================
+RDD vs DataFrame API Comparison
+======================================================================
+RDD API:
+  - Lower-level, more control
+  - Manual optimization needed
+  - Python/Java/Scala native
+  - Good for unstructured data
+
+DataFrame API:
+  - Higher-level, easier to use
+  - Catalyst optimizer optimizes automatically
+  - SQL-like operations
+  - Better for structured data
+======================================================================

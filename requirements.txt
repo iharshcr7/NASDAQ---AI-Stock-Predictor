@@ -16,3 +16,9 @@ yfinance
 requests
 alpha_vantage
 python-dotenv
+
+# Database
+pymongo
+
+# Deep Learning (LSTM model)
+tensorflow==2.15.0

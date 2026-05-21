@@ -253,7 +253,7 @@ def main() -> None:
     # Create output directories
     BULLISH_DIR.mkdir(parents=True, exist_ok=True)
     BEARISH_DIR.mkdir(parents=True, exist_ok=True)
-    logger.info("Output directories created ✓")
+    logger.info("Output directories created")
 
     # Load data
     df = pd.read_csv(INPUT_FILE)
@@ -301,23 +301,23 @@ def main() -> None:
     logger.info("Class balance ratio:  %.2f", max(total_counts["bullish"], total_counts["bearish"]) / max(1, min(total_counts["bullish"], total_counts["bearish"])))
     
     if total_size_gb >= 1.0:
-        logger.info("✓ Dataset size requirement MET: >1GB")
+        logger.info("Dataset size requirement MET: >1GB")
     else:
-        logger.warning("⚠ Dataset size: %.2f GB (target: >1GB)", total_size_gb)
+        logger.warning("Dataset size: %.2f GB (target: >1GB)", total_size_gb)
         logger.info("  Recommendation: Increase MAX_IMAGES_PER_STOCK or IMAGE_DPI")
     
     logger.info("=" * 60)
     logger.info("UNSTRUCTURED DATA PROOF")
     logger.info("=" * 60)
-    logger.info("✓ Candlestick images: %d total", total_counts["bullish"] + total_counts["bearish"])
-    logger.info("✓ Dataset size: %.2f GB", total_size_gb)
-    logger.info("✓ Class distribution: Bullish=%d (%.1f%%), Bearish=%d (%.1f%%)",
+    logger.info("Candlestick images: %d total", total_counts["bullish"] + total_counts["bearish"])
+    logger.info("Dataset size: %.2f GB", total_size_gb)
+    logger.info("Class distribution: Bullish=%d (%.1f%%), Bearish=%d (%.1f%%)",
                 total_counts["bullish"],
                 100 * total_counts["bullish"] / max(1, total_counts["bullish"] + total_counts["bearish"]),
                 total_counts["bearish"],
                 100 * total_counts["bearish"] / max(1, total_counts["bullish"] + total_counts["bearish"]))
-    logger.info("✓ Image format: PNG (lossless)")
-    logger.info("✓ Resolution: %dx%d @ %d DPI", int(IMAGE_SIZE[0] * IMAGE_DPI), int(IMAGE_SIZE[1] * IMAGE_DPI), IMAGE_DPI)
+    logger.info("Image format: PNG (lossless)")
+    logger.info("Resolution: %dx%d @ %d DPI", int(IMAGE_SIZE[0] * IMAGE_DPI), int(IMAGE_SIZE[1] * IMAGE_DPI), IMAGE_DPI)
     logger.info("=" * 60)
 
 
