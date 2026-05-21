@@ -1,4 +1,4 @@
-# NASDAQ AI Stock Predictor
+<img width="1791" height="644" alt="Screenshot 2026-05-21 182022" src="https://github.com/user-attachments/assets/30a7d51f-b6a0-45bb-b686-2c7cf2ef669e" /># NASDAQ AI Stock Predictor
 
 A Python-based stock direction prediction project with a Streamlit dashboard, live market data fetching, Random Forest and LSTM models, optional MongoDB prediction history, and optional Spark/HDFS processing for big-data workflow demonstration.
 
@@ -965,7 +965,8 @@ pip install tensorflow==2.15.0
 Check:
 
 - Java is installed and available on `PATH`
-- `JAVA_HOME` is set
+- `JAVA_HOME` is set<img width="1889" height="888" alt="Screenshot 2026-05-21 182005" src="https://github.com/user-attachments/assets/aa8d47b5-6c25-42e5-8025-5d246edde5b9" />
+
 - PySpark is installed from `requirements.txt`
 - HDFS flags are only used when Hadoop/HDFS is actually running
 
@@ -982,3 +983,46 @@ python scripts\predict_live.py --symbol AAPL --skip-hdfs --no-spark
 - The Random Forest model is the main production model for both live and manual dashboard predictions.
 - The LSTM model is live-mode only because it requires historical sequences.
 - Spark/HDFS processing is optional and does not need to work for the core prediction UI to run.
+
+- Project Screenshots
+- 
+- GUI
+- 
+- <img width="1919" height="1010" alt="Screenshot 2026-05-21 001939" src="https://github.com/user-attachments/assets/0950c5d6-6f8c-40b8-9618-fa7c9e482de8" />
+
+Predicting Stocks like(APPLE) Using random forest using API source Alpha vantage
+
+<img width="1917" height="884" alt="Screenshot 2026-05-21 181617" src="https://github.com/user-attachments/assets/5a886e6a-5ffc-40b5-a6cb-42f852b6f3f3" />
+
+Plot for Visualizations
+
+<img width="1919" height="870" alt="Screenshot 2026-05-21 181632" src="https://github.com/user-attachments/assets/0d0ecae1-4ebd-4c24-a0d5-908eabb8d922" />
+
+<img width="1919" height="884" alt="Screenshot 2026-05-21 181643" src="https://github.com/user-attachments/assets/4d52d339-d441-4e50-9e8d-dd9222ccd8b0" />
+
+<img width="1919" height="897" alt="Screenshot 2026-05-21 181655" src="https://github.com/user-attachments/assets/10960f2c-a558-4661-b603-a2e7d6fffe2f" />
+
+<img width="1915" height="888" alt="Screenshot 2026-05-21 181720" src="https://github.com/user-attachments/assets/3b80e1eb-caac-4111-9f4e-669d2be68eef" />
+
+Predicting Stocks like(APPLE) Using LSTM using API source Yfinance
+
+Plot for Visualizations
+<img width="1791" height="644" alt="Screenshot 2026-05-21 182022" src="https://github.com/user-attachments/assets/b267cafa-da61-4dad-9b58-a22a4b9a4706" />
+
+<img width="1739" height="461" alt="Screenshot 2026-05-21 182035" src="https://github.com/user-attachments/assets/8fb82f49-af6c-4851-b3ff-b28bca708f13" />
+
+<img width="1693" height="554" alt="Screenshot 2026-05-21 182048" src="https://github.com/user-attachments/assets/cf250ee0-5bac-46a1-a373-c5fb52474c6a" />
+
+For manual Input
+
+<img width="1899" height="889" alt="Screenshot 2026-05-21 182111" src="https://github.com/user-attachments/assets/a7d62d97-7210-49f1-ab8e-cdb917b23764" />
+
+Storing Data in MongoDB 
+
+<img width="1891" height="947" alt="Screenshot 2026-05-21 181845" src="https://github.com/user-attachments/assets/b440d7c3-a813-49f1-8730-573a066d9cca" />
+
+
+
+
+
+
